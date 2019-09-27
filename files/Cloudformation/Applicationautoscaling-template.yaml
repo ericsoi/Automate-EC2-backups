@@ -1,0 +1,694 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  This template creates ApplicationAutoScaling resources and
+  ApplicationAutoScaling policies
+Metadata:
+  'AWS::CloudFormation::Designer':
+    cc923935-3664-4be3-9c51-c2f9eb7f2060:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 220
+        'y': 60
+      z: 0
+      embeds: []
+    64737f4f-8f2e-4e97-bd14-afce36bf8e8a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 370
+        'y': 60
+      z: 0
+      embeds: []
+    1601511f-e660-4e6e-884c-94733ff0229b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 220
+        'y': 320
+      z: 0
+      embeds: []
+    0e5f1df8-130e-44dd-9321-ed2e590c130d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 380
+        'y': 320
+      z: 0
+      embeds: []
+    09bc8ee7-b77c-4d85-a254-0490e3528ca7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 506.0057067871094
+        'y': 57.017051696777344
+      z: 0
+      embeds: []
+    1530c8bd-4bf5-4143-9d27-d5c24ab5bcb6:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 641.0057067871094
+        'y': 59.017051696777344
+      z: 0
+      embeds: []
+    d1290639-2b53-4558-890a-1c8e0813c86c:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 520
+        'y': 320
+      z: 0
+      embeds: []
+    ab8189de-1e28-4dcc-bf53-857f7fc3b3e7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 370
+        'y': 170
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 64737f4f-8f2e-4e97-bd14-afce36bf8e8a
+      dependson:
+        - 143f74fe-06c3-4401-8595-a34c35a5a063
+    871633dd-668c-49b5-8d45-facb1829480b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 510
+        'y': 160
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 09bc8ee7-b77c-4d85-a254-0490e3528ca7
+      dependson:
+        - ab8189de-1e28-4dcc-bf53-857f7fc3b3e7
+    14cefe85-4099-4ed4-9ae2-bb7fc1d55866:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 650
+        'y': 160
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 1530c8bd-4bf5-4143-9d27-d5c24ab5bcb6
+      dependson:
+        - 6560bc41-3aad-4b89-b54a-c522354cce99
+    0dde6105-38b8-422c-a19e-28fd71746ce9:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 220
+        'y': 170
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - cc923935-3664-4be3-9c51-c2f9eb7f2060
+    6560bc41-3aad-4b89-b54a-c522354cce99:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 420
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 581264b5-0a70-40b6-8eb7-be217f8c9464
+      dependson:
+        - 1ef247fd-e109-4333-8a51-6182ce0ce6f4
+    1ef247fd-e109-4333-8a51-6182ce0ce6f4:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 220
+        'y': 410
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 1601511f-e660-4e6e-884c-94733ff0229b
+    4406a0c8-de91-4644-a810-b8abd31d4b13:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 520
+        'y': 410
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - d1290639-2b53-4558-890a-1c8e0813c86c
+      dependson:
+        - 6e6e7ca4-2516-4678-81ca-7ebdd522e972
+    6e6e7ca4-2516-4678-81ca-7ebdd522e972:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 380
+        'y': 410
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 0e5f1df8-130e-44dd-9321-ed2e590c130d
+      dependson:
+        - 871633dd-668c-49b5-8d45-facb1829480b
+    fb98cadb-0cb8-4258-ae6f-8eb674848b34:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 660
+        'y': 410
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 5bb9c076-04e1-49f0-a08f-cc192361549c
+      dependson:
+        - 4406a0c8-de91-4644-a810-b8abd31d4b13
+    143f74fe-06c3-4401-8595-a34c35a5a063:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 170
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 19601b20-dce4-4c0f-aa23-360c0da86bd6
+    19601b20-dce4-4c0f-aa23-360c0da86bd6:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 60
+      z: 0
+      embeds: []
+    581264b5-0a70-40b6-8eb7-be217f8c9464:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 320
+      z: 0
+      embeds: []
+    5bb9c076-04e1-49f0-a08f-cc192361549c:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 660
+        'y': 310
+      z: 0
+      embeds: []
+Parameters:
+  OpsAutomatorScalingRole:
+    Type: String
+    Description: Arn of the OpsAutomatorScalingRole
+    Default: OpsAutomatorScalingRoleArn
+  ConcurrencyTable:
+    Type: String
+    Description: ID for the ConcurrencyTable
+    Default: ConcurrencyTableId
+  TaskTrackingTable:
+    Type: String
+    Description: Id for the TaskTrackingTable
+    Default: TaskTrackingTable
+  ConfigurationTable:
+    Type: String
+    Description: Id for ConfigurationTable
+    Default: ConfigurationTable
+Mappings:
+  EnabledDisabled:
+    'Yes':
+      Value: ENABLED
+    'No':
+      Value: DISABLED
+  YesNoBoolean:
+    'Yes':
+      Value: 'True'
+    'No':
+      Value: 'False'
+  Settings:
+    Metrics:
+      Url: 'https://metrics.awssolutionsbuilder.com/generic'
+      SolutionId: S00029
+    Resources:
+      ResourceToS3SizeKB: 16
+    DynamoDbTableCapacities:
+      TrackingTableMinRead: 5
+      TrackingTableMaxRead: 100
+      TrackingTableMinWrite: 5
+      TrackingTableMaxWrite: 100
+      TrackingTableCompletionMinRead: 5
+      TrackingTableCompletionMaxRead: 50
+      TrackingTableCompletionMinWrite: 5
+      TrackingTableCompletionMaxWrite: 50
+      TrackingTableExecutionMinRead: 2
+      TrackingTableExecutionMaxRead: 50
+      TrackingTableExecutionMinWrite: 2
+      TrackingTableExecutionMaxWrite: 50
+      ConcurrencyTableMinRead: 2
+      ConcurrencyTableMaxRead: 50
+      ConcurrencyTableMinWrite: 2
+      ConcurrencyTableMaxWrite: 50
+      ConfigurationTableMinRead: 2
+      ConfigurationTableMaxRead: 10
+      ConfigurationTableMinWrite: 1
+      ConfigurationTableMaxWrite: 5
+      LastExecutionRead: 1
+      LastExecutionWrite: 1
+Resources:
+  TaskTrackingTableAutoScalingWriteTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableMaxWrite
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableMinWrite
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:WriteCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: cc923935-3664-4be3-9c51-c2f9eb7f2060
+  TaskTrackingTableCompletionIndexWriteTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableCompletionMaxWrite
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableCompletionMinWrite
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+          - index
+          - WaitForCompletionTasks
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:index:WriteCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 64737f4f-8f2e-4e97-bd14-afce36bf8e8a
+  ConfigurationTableAutoScalingReadTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConfigurationTableMaxRead
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConfigurationTableMinRead
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref ConfigurationTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:ReadCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1601511f-e660-4e6e-884c-94733ff0229b
+  TaskTrackingTableExecutionIndexWriteTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableExecutionMaxWrite
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableExecutionMinWrite
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+          - index
+          - WaitForExecutionTasks
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:index:WriteCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 0e5f1df8-130e-44dd-9321-ed2e590c130d
+  TaskTrackingTableExecutionIndexReadTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableExecutionMaxRead
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableExecutionMinRead
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+          - index
+          - WaitForExecutionTasks
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:index:ReadCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 09bc8ee7-b77c-4d85-a254-0490e3528ca7
+  TaskTrackingTableAutoScalingReadTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableMaxRead
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableMinRead
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:ReadCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1530c8bd-4bf5-4143-9d27-d5c24ab5bcb6
+  ConcurrencyTableAutoScalingReadTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConcurrencyTableMaxRead
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConcurrencyTableMinRead
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref ConcurrencyTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:ReadCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d1290639-2b53-4558-890a-1c8e0813c86c
+  TaskTrackingTableCompletionIndexWritePolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableCompletionIndexWritePolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableCompletionIndexWriteTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableCompletionIndexReadPolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: ab8189de-1e28-4dcc-bf53-857f7fc3b3e7
+  TaskTrackingTableExecutionIndexReadPolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableExecutionIndexReadPolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableExecutionIndexReadTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBReadCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableCompletionIndexWritePolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 871633dd-668c-49b5-8d45-facb1829480b
+  TaskTrackingTableAutoScalingReadPolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableAutoScalingReadPolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableAutoScalingReadTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBReadCapacityUtilization
+    DependsOn:
+      - ConfigurationTableAutoScalingWritePolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 14cefe85-4099-4ed4-9ae2-bb7fc1d55866
+  TaskTrackingTableAutoScalingWritePolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableAutoScalingWritePolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableAutoScalingWriteTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableAutoScalingReadPolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 0dde6105-38b8-422c-a19e-28fd71746ce9
+  ConfigurationTableAutoScalingWritePolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - ConfigurationTableAutoScalingWritePolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ConfigurationTableAutoScalingWriteTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+    DependsOn:
+      - ConfigurationTableAutoScalingReadPolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 6560bc41-3aad-4b89-b54a-c522354cce99
+  ConfigurationTableAutoScalingReadPolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - ConfigurationTableAutoScalingReadPolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ConfigurationTableAutoScalingReadTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBReadCapacityUtilization
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1ef247fd-e109-4333-8a51-6182ce0ce6f4
+  ConcurrencyTableAutoScalingReadPolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - ConcurrencyTableAutoScalingReadPolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ConcurrencyTableAutoScalingReadTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBReadCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableExecutionIndexWritePolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4406a0c8-de91-4644-a810-b8abd31d4b13
+  TaskTrackingTableExecutionIndexWritePolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableExecutionIndexWritePolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableExecutionIndexWriteTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableExecutionIndexReadPolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 6e6e7ca4-2516-4678-81ca-7ebdd522e972
+  ConcurrencyTableAutoScalingWritePolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - ConcurrencyTableAutoScalingWritePolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ConcurrencyTableAutoScalingWriteTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+    DependsOn:
+      - ConcurrencyTableAutoScalingReadPolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: fb98cadb-0cb8-4258-ae6f-8eb674848b34
+  TaskTrackingTableCompletionIndexReadPolicy:
+    Type: 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    Properties:
+      PolicyName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TaskTrackingTableCompletionIndexReadPolicy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref TaskTrackingTableCompletionIndexReadTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 75
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: DynamoDBReadCapacityUtilization
+    DependsOn:
+      - TaskTrackingTableAutoScalingWritePolicy
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 143f74fe-06c3-4401-8595-a34c35a5a063
+  TaskTrackingTableCompletionIndexReadTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableCompletionMaxRead
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - TrackingTableCompletionMinRead
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref TaskTrackingTable
+          - index
+          - WaitForCompletionTasks
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:index:ReadCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 19601b20-dce4-4c0f-aa23-360c0da86bd6
+  ConfigurationTableAutoScalingWriteTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConfigurationTableMaxWrite
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConfigurationTableMinWrite
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref ConfigurationTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:WriteCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 581264b5-0a70-40b6-8eb7-be217f8c9464
+  ConcurrencyTableAutoScalingWriteTarget:
+    Type: 'AWS::ApplicationAutoScaling::ScalableTarget'
+    Properties:
+      MaxCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConcurrencyTableMaxWrite
+      MinCapacity: !FindInMap 
+        - Settings
+        - DynamoDbTableCapacities
+        - ConcurrencyTableMinWrite
+      ResourceId: !Join 
+        - /
+        - - table
+          - !Ref ConcurrencyTable
+      RoleARN: !Ref OpsAutomatorScalingRole
+      ScalableDimension: 'dynamodb:table:WriteCapacityUnits'
+      ServiceNamespace: dynamodb
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 5bb9c076-04e1-49f0-a08f-cc192361549c

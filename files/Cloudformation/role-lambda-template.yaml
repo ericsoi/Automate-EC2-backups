@@ -1,0 +1,901 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  This template creates two IAM Roles, Two Event Rules, Lambda resources, custom
+  resourses, sns topic, and event rules
+Metadata:
+  'AWS::CloudFormation::Designer':
+    e6f91226-2ced-4de2-a206-4096933e5641:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 630
+        'y': 20
+      z: 0
+      embeds: []
+    d4eff423-65ef-4056-987f-589211e0b07a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 750
+        'y': 20
+      z: 0
+      embeds: []
+    675ed12e-635f-4ce9-87aa-581778cfe23a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 660
+        'y': 110
+      z: 0
+      embeds: []
+    e2f2f69e-451c-4018-91fa-55038f89dc7b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 750
+        'y': 110
+      z: 0
+      embeds: []
+      dependson:
+        - d4eff423-65ef-4056-987f-589211e0b07a
+    8960e1cd-dc10-464c-8946-c8c5e51c3989:
+      size:
+        width: 140
+        height: 120
+      position:
+        x: 460
+        'y': 20
+      z: 0
+      embeds: []
+    843d4d5c-ba62-4676-8057-fc22854debc1:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 360
+        'y': 170
+      z: 0
+      embeds: []
+    c5c14d1b-cb06-45a4-8787-6df2e3c82dc7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 470
+        'y': 200
+      z: 0
+      embeds: []
+    1785005b-12a0-4643-abc3-d62047216271:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 560
+        'y': 200
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    a9347a6d-cb24-4fa8-acda-a3aaadc2fa62:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 650
+        'y': 200
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    c8788fad-b763-46e0-8c31-7c52e62923c9:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 460
+        'y': 330
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    0c0dd594-baee-4ecc-9721-a6a98b65d92f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 550
+        'y': 330
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    a03daac5-1dcb-469a-ae17-56982f621665:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 670
+        'y': 330
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    7143f80f-abc4-4071-b282-7357f409e414:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 760
+        'y': 330
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+    271c0275-3bb8-49aa-8895-0410ac7fce33:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 920
+        'y': 80
+      z: 0
+      embeds: []
+    9955d27c-0652-4887-b98a-efed09c9d64f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 930
+        'y': 210
+      z: 0
+      embeds: []
+    c6913612-fd1d-4e36-b83d-6b16a8dd1d6a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 930
+        'y': 320
+      z: 0
+      embeds: []
+Parameters:
+  ConfigurationTableStreamArn:
+    Type: String
+    Description: Stream Arn for ConfigurationTable
+    Default: ConfigurationTableStreamArn
+  TaskTrackingTableStreamArn:
+    Type: String
+    Description: Stream Arn for ConfigurationTable
+    Default: TaskTrackingTableStreamArn
+  TaskTrackingTable:
+    Type: String
+    Description: Name for the TaskTrackingTable
+    Default: TaskTrackingTable
+  LastSchedulerExecutionTable:
+    Type: String
+    Description: Name for the LastSchedulerExecutionTable
+    Default: LastSchedulerExecutionTable
+  ConfigurationTable:
+    Type: String
+    Description: Table name for TaskResources
+    Default: ConfigurationTable
+  TaskResources:
+    Type: String
+    Description: Name of the TaskResources
+    Default: TaskResources
+  ConfigurationTableArn:
+    Type: String
+    Description: Arn for the ConfigurationTableArn
+    Default: ConfigurationTableArn
+  ConcurrencyTable:
+    Type: String
+    Description: Table name for ConcurrencyTable
+    Default: ConcurrencyTable
+  Configuration:
+    Type: String
+    Description: Name of configuration bucket
+    Default: Configuration
+  TaskTrackingTableArn:
+    Type: String
+    Description: Arn of the TaskTrackingTable
+    Default: TaskTrackingTableArn
+  TagName:
+    Type: String
+    Default: OpsAutomatorTaskList
+    MinLength: 1
+    MaxLength: 127
+    Description: >-
+      Default name of tag that contains the list of tasks for a tagged
+      resources.
+  EnableTaskCleanup:
+    Type: String
+    AllowedValues:
+      - 'Yes'
+      - 'No'
+    Default: 'Yes'
+    Description: Enable cleanup of task tracking table.
+  RetainFailedTasks:
+    Type: String
+    AllowedValues:
+      - 'Yes'
+      - 'No'
+    Default: 'Yes'
+    Description: Do not delete failed tasks.
+  SendAnonymousData:
+    Type: String
+    AllowedValues:
+      - 'Yes'
+      - 'No'
+    Default: 'Yes'
+    Description: Send Anonymous Metrics Data.
+  TaskRetentionHours:
+    Type: Number
+    MinValue: 1
+    Default: 168
+    Description: Number of hours after which tasks are deleted..
+  LogRetentionDays:
+    Type: Number
+    Default: 30
+    AllowedValues:
+      - 1
+      - 3
+      - 5
+      - 7
+      - 14
+      - 30
+      - 60
+      - 90
+      - 120
+      - 150
+      - 180
+      - 365
+      - 400
+      - 545
+      - 731
+      - 1827
+      - 3653
+    Description: Retention days for scheduler logs.
+  LambdaSize:
+    Type: Number
+    Description: >-
+      Lambda function size, increment size when processing large amounts of
+      resources
+    Default: 128
+    AllowedValues:
+      - 128
+      - 192
+      - 256
+      - 320
+      - 384
+      - 448
+      - 512
+      - 576
+      - 640
+      - 704
+      - 768
+      - 832
+      - 896
+      - 960
+      - 1024
+      - 1088
+      - 1152
+      - 1216
+      - 1280
+      - 1344
+      - 1408
+      - 1472
+      - 1536
+      - 1600
+      - 1664
+      - 1728
+      - 1792
+      - 1856
+      - 1920
+      - 1984
+      - 2048
+      - 2112
+      - 2176
+      - 2240
+      - 2304
+      - 2368
+      - 2432
+      - 2496
+      - 2560
+      - 2624
+      - 2688
+      - 2752
+      - 2816
+      - 2880
+      - 2944
+      - 3008
+  ConfigBackupDays:
+    Type: Number
+    Default: 30
+    MinValue: 1
+    Description: Retention days for scheduler configuration backups.
+  SchedulerActive:
+    Type: String
+    AllowedValues:
+      - 'Yes'
+      - 'No'
+    Default: 'Yes'
+    Description: Activate or deactivate scheduling of task.
+Conditions:
+  EnableTaskCleanupCondition: !Equals 
+    - !Ref EnableTaskCleanup
+    - 'Yes'
+  KeepFailedTasksCondition: !Equals 
+    - !Ref RetainFailedTasks
+    - 'Yes'
+Mappings:
+  EnabledDisabled:
+    'Yes':
+      Value: ENABLED
+    'No':
+      Value: DISABLED
+  YesNoBoolean:
+    'Yes':
+      Value: 'True'
+    'No':
+      Value: 'False'
+  Settings:
+    Metrics:
+      Url: 'https://metrics.awssolutionsbuilder.com/generic'
+      SolutionId: S00029
+    Resources:
+      ResourceToS3SizeKB: 16
+    DynamoDbTableCapacities:
+      TrackingTableMinRead: 5
+      TrackingTableMaxRead: 100
+      TrackingTableMinWrite: 5
+      TrackingTableMaxWrite: 100
+      TrackingTableCompletionMinRead: 5
+      TrackingTableCompletionMaxRead: 50
+      TrackingTableCompletionMinWrite: 5
+      TrackingTableCompletionMaxWrite: 50
+      TrackingTableExecutionMinRead: 2
+      TrackingTableExecutionMaxRead: 50
+      TrackingTableExecutionMinWrite: 2
+      TrackingTableExecutionMaxWrite: 50
+      ConcurrencyTableMinRead: 2
+      ConcurrencyTableMaxRead: 50
+      ConcurrencyTableMinWrite: 2
+      ConcurrencyTableMaxWrite: 50
+      ConfigurationTableMinRead: 2
+      ConfigurationTableMaxRead: 10
+      ConfigurationTableMinWrite: 1
+      ConfigurationTableMaxWrite: 5
+      LastExecutionRead: 1
+      LastExecutionWrite: 1
+Resources:
+  CompletionRule:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      Description: Rule to trigger instance for scheduler task completion check
+      ScheduleExpression: cron(0/1 * * * ? *)
+      State: ENABLED
+      Targets:
+        - Id: TaskScheduler
+          Arn: !GetAtt 
+            - SchedulerDefault
+            - Arn
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: e6f91226-2ced-4de2-a206-4096933e5641
+  SchedulerRule:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      Description: Rule to trigger instance for task scheduler
+      ScheduleExpression: cron(0/1 * * * ? *)
+      State: !FindInMap 
+        - EnabledDisabled
+        - !Ref SchedulerActive
+        - Value
+      Targets:
+        - Id: TaskScheduler
+          Arn: !GetAtt 
+            - SchedulerDefault
+            - Arn
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d4eff423-65ef-4056-987f-589211e0b07a
+  SchedulerRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+          - Effect: Allow
+            Principal:
+              Service: dynamodb.amazonaws.com
+            Action: 'sts:AssumeRole'
+          - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: SchedulerPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'logs:DescribeLogStreams'
+                  - 'logs:PutRetentionPolicy'
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action: 'dynamodb:ListTables'
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action: 'sns:Publish'
+                Resource:
+                  - !Ref SchedulerSnsTopic
+              - Effect: Allow
+                Action:
+                  - 's3:PutObject'
+                  - 's3:DeleteObject'
+                  - 's3:GetObject'
+                Resource: !Sub 
+                  - 'arn:aws:s3:::${Name}/*'
+                  - Name: !Ref Configuration
+              - Effect: Allow
+                Action:
+                  - 's3:PutObject'
+                  - 's3:DeleteObject'
+                  - 's3:GetObject'
+                Resource: !Sub 
+                  - 'arn:aws:s3:::${Name}/*'
+                  - Name: !Ref TaskResources
+              - Effect: Allow
+                Action:
+                  - 's3:ListBucket'
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:UpdateItem'
+                  - 'dynamodb:GetItem'
+                  - 'dynamodb:BatchWriteItem'
+                  - 'dynamodb:Query'
+                Resource:
+                  - !Join 
+                    - ''
+                    - - !Join 
+                        - ':'
+                        - - 'arn:aws:dynamodb'
+                          - !Ref 'AWS::Region'
+                          - !Ref 'AWS::AccountId'
+                          - table/
+                      - !Ref TaskTrackingTable
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:UpdateItem'
+                  - 'dynamodb:GetItem'
+                  - 'dynamodb:BatchWriteItem'
+                  - 'dynamodb:Query'
+                Resource:
+                  - !Join 
+                    - ''
+                    - - !Join 
+                        - ':'
+                        - - 'arn:aws:dynamodb'
+                          - !Ref 'AWS::Region'
+                          - !Ref 'AWS::AccountId'
+                          - table/
+                      - !Ref TaskTrackingTable
+                      - /index/*
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:Query'
+                  - 'dynamodb:Scan'
+                  - 'dynamodb:GetItem'
+                  - 'dynamodb:PutItem'
+                  - 'dynamodb:DeleteItem'
+                Resource:
+                  - !Join 
+                    - ''
+                    - - !Join 
+                        - ':'
+                        - - 'arn:aws:dynamodb'
+                          - !Ref 'AWS::Region'
+                          - !Ref 'AWS::AccountId'
+                          - table/
+                      - !Ref ConfigurationTable
+              - Sid: ConcurrencyTableAcces
+                Effect: Allow
+                Action:
+                  - 'dynamodb:UpdateItem'
+                  - 'dynamodb:DeleteItem'
+                Resource:
+                  - !Join 
+                    - ''
+                    - - !Join 
+                        - ':'
+                        - - 'arn:aws:dynamodb'
+                          - !Ref 'AWS::Region'
+                          - !Ref 'AWS::AccountId'
+                          - table/
+                      - !Ref ConcurrencyTable
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:GetItem'
+                  - 'dynamodb:UpdateItem'
+                Resource:
+                  - !Join 
+                    - ''
+                    - - !Join 
+                        - ':'
+                        - - 'arn:aws:dynamodb'
+                          - !Ref 'AWS::Region'
+                          - !Ref 'AWS::AccountId'
+                          - table/
+                      - !Ref LastSchedulerExecutionTable
+              - Effect: Allow
+                Action:
+                  - 'events:EnableRule'
+                  - 'events:DisableRule'
+                  - 'events:PutRule'
+                Resource:
+                  - !Sub >-
+                    arn:aws:events:${AWS::Region}:${AWS::AccountId}:rule/${AWS::StackName}-SchedulerRule*
+                  - !Sub >-
+                    arn:aws:events:${AWS::Region}:${AWS::AccountId}:rule/${AWS::StackName}-CompletionRule*
+              - Effect: Allow
+                Action:
+                  - 'events:ListRules'
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - 'cloudformation:ListStackResources'
+                Resource:
+                  - !Ref 'AWS::StackId'
+              - Effect: Allow
+                Action:
+                  - 'cloudformation:DeleteStack'
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - 'lambda:InvokeFunction'
+                Resource:
+                  - !Join 
+                    - ':'
+                    - - 'arn:aws:lambda'
+                      - !Ref 'AWS::Region'
+                      - !Ref 'AWS::AccountId'
+                      - function
+                      - !Join 
+                        - '-'
+                        - - !Ref 'AWS::StackName'
+                          - SchedulerDefault
+                Sid: SchedulerInvoke
+              - Effect: Allow
+                Action:
+                  - 'sts:AssumeRole'
+                Resource:
+                  - '*'
+              - Action:
+                  - 'ec2:CopySnapshot'
+                  - 'ec2:CreateTags'
+                Resource: '*'
+                Effect: Allow
+                Sid: Ec2CopySnapshote9bd4a2e66554500817f7953f2602aa3
+              - Action:
+                  - 'redshift:DescribeClusterSnapshots'
+                  - 'redshift:DeleteClusterSnapshot'
+                  - 'redshift:RevokeSnapshotAccess'
+                Resource: '*'
+                Effect: Allow
+                Sid: RedshiftDeleteSnapshot6a6fb8cb41574ef2a85727dfcb4dae37
+              - Action:
+                  - 'ec2:DescribeSnapshots'
+                  - 'ec2:DeleteSnapshot'
+                Resource: '*'
+                Effect: Allow
+                Sid: Ec2DeleteSnapshot0fb0bd78c13147e5bfc89de7e79644ea
+              - Action:
+                  - 'redshift:DescribeClusters'
+                  - 'redshift:CreateClusterSnapshot'
+                  - 'redshift:DescribeTags'
+                  - 'redshift:AuthorizeSnapshotAccess'
+                Resource: '*'
+                Effect: Allow
+                Sid: RedshiftCreateSnapshot88ad775071d34b189b96b9e1b27ea28d
+              - Action:
+                  - 'dynamodb:Scan'
+                  - 'dynamodb:BatchWriteItem'
+                Resource: '*'
+                Effect: Allow
+                Sid: SchedulerTaskCleanup5a8f125d2f2b42bdaf10dd1f7afd501d
+              - Action:
+                  - 'dynamodb:Scan'
+                  - 's3:PutObject'
+                Resource: '*'
+                Effect: Allow
+                Sid: SchedulerConfigBackup19f297df1fb44406bb23b9fcebe61edd
+              - Action:
+                  - 'ec2:CreateSnapshot'
+                  - 'ec2:DescribeTags'
+                  - 'ec2:DescribeInstances'
+                  - 'ec2:DescribeSnapshots'
+                  - 'ec2:CreateTags'
+                Resource: '*'
+                Effect: Allow
+                Sid: Ec2CreateSnapshotb6dba9f842864a2fb946eb423a1e111f
+              - Action:
+                  - 'dynamodb:DescribeTable'
+                  - 'dynamodb:UpdateTable'
+                Resource: '*'
+                Effect: Allow
+                Sid: DynamodbSetCapacity6abf7581ed8845e99b5887e10763e57b
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole'
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Path: /
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 675ed12e-635f-4ce9-87aa-581778cfe23a
+  OpsAutomatorScalingRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: application-autoscaling.amazonaws.com
+              AWS: !GetAtt 
+                - SchedulerRole
+                - Arn
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: OpsAutomatorScalingRolePolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:DescribeTable'
+                  - 'dynamodb:UpdateTable'
+                  - 'cloudwatch:PutMetricAlarm'
+                  - 'cloudwatch:DescribeAlarms'
+                  - 'cloudwatch:GetMetricStatistics'
+                  - 'cloudwatch:SetAlarmState'
+                  - 'cloudwatch:DeleteAlarms'
+                Resource: '*'
+      Path: /
+    DependsOn:
+      - SchedulerRule
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: e2f2f69e-451c-4018-91fa-55038f89dc7b
+  SchedulerLogGroup:
+    Type: 'AWS::Logs::LogGroup'
+    Properties:
+      LogGroupName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - logs
+      RetentionInDays: !Ref LogRetentionDays
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 8960e1cd-dc10-464c-8946-c8c5e51c3989
+  SchedulerSnsTopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      DisplayName: !Ref 'AWS::StackName'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 843d4d5c-ba62-4676-8057-fc22854debc1
+  SchedulerDefault:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Code:
+        S3Bucket: !Join 
+          - '-'
+          - - solutions
+            - !Ref 'AWS::Region'
+        S3Key: ops-automator/latest/ops-automator-1.1.2.34.zip
+      FunctionName: !Join 
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - SchedulerDefault
+      Handler: main.lambda_handler
+      Runtime: python2.7
+      Role: !GetAtt 
+        - SchedulerRole
+        - Arn
+      Environment:
+        Variables:
+          LAST_SCHEDULER_RUN_TABLE: !Ref LastSchedulerExecutionTable
+          RESOURCE_BUCKET: !Ref TaskResources
+          RESOURCE_TO_S3_SIZE: !FindInMap 
+            - Settings
+            - Resources
+            - ResourceToS3SizeKB
+          ACTION_TRACKING_TABLE: !Ref TaskTrackingTable
+          CONFIG_TABLE: !Ref ConfigurationTable
+          CONFIG_BUCKET: !Ref Configuration
+          CONCURRENCY_TABLE: !Ref ConcurrencyTable
+          SCHEDULER_TAG_NAME: !Ref TagName
+          LOG_GROUP: !Ref SchedulerLogGroup
+          STACK_NAME: !Ref 'AWS::StackName'
+          STACK_ID: !Ref 'AWS::StackId'
+          SNS_TOPIC: !Ref SchedulerSnsTopic
+          SEND_METRICS: !FindInMap 
+            - YesNoBoolean
+            - !Ref SendAnonymousData
+            - Value
+          SOLUTION_ID: !FindInMap 
+            - Settings
+            - Metrics
+            - SolutionId
+          METRICS_URL: !FindInMap 
+            - Settings
+            - Metrics
+            - Url
+      MemorySize: !Ref LambdaSize
+      Timeout: '300'
+      Description: 'Task scheduler (default), version 1.1.2.34'
+    DependsOn:
+      - SchedulerRole
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c5c14d1b-cb06-45a4-8787-6df2e3c82dc7
+  ActionEventMappingConfiguration:
+    Type: 'AWS::Lambda::EventSourceMapping'
+    Properties:
+      BatchSize: 1
+      Enabled: true
+      EventSourceArn: !Ref ConfigurationTableStreamArn
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      StartingPosition: TRIM_HORIZON
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1785005b-12a0-4643-abc3-d62047216271
+  ActionEventMappingTaskTracking:
+    Type: 'AWS::Lambda::EventSourceMapping'
+    Properties:
+      BatchSize: 20
+      Enabled: true
+      EventSourceArn: !Ref TaskTrackingTableStreamArn
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      StartingPosition: TRIM_HORIZON
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a9347a6d-cb24-4fa8-acda-a3aaadc2fa62
+  InvokePermissionCloudWatchEventsCompletion:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt 
+        - CompletionRule
+        - Arn
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c8788fad-b763-46e0-8c31-7c52e62923c9
+  InvokePermissionCloudWatchEvents:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt 
+        - SchedulerRule
+        - Arn
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 0c0dd594-baee-4ecc-9721-a6a98b65d92f
+  SchedulerInvokePermissionDynamodb:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: dynamodb.amazonaws.com
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a03daac5-1dcb-469a-ae17-56982f621665
+  OpsAutomatorInvokePermissionDynamodb:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: dynamodb.amazonaws.com
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 7143f80f-abc4-4071-b282-7357f409e414
+  SchedulerSetupHelper:
+    Type: 'Custom::SchedulerSetupHelper'
+    Properties:
+      ServiceToken: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Timeout: '150'
+      LogRetentionDays: !Ref LogRetentionDays
+      StackVersion: 1.1.2.34
+      SchedulerRole: !GetAtt 
+        - SchedulerRole
+        - Arn
+      DeploymentVersion: 1.1.2.34
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 271c0275-3bb8-49aa-8895-0410ac7fce33
+  SchedulerBackupTask:
+    Type: 'Custom::TaskConfig'
+    Properties:
+      ServiceToken: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Timeout: '120'
+      Name: TaskConfigurationBackup
+      Description: 'Internal task for daily backup of configuration table, do not delete'
+      Parameters:
+        S3Bucket: !Ref Configuration
+        S3Prefix: Backups/
+      Interval: 0 0 * * ?
+      Internal: 'True'
+      Action: SchedulerConfigBackup
+      Enabled: 'True'
+      StackId: !Ref 'AWS::StackId'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 9955d27c-0652-4887-b98a-efed09c9d64f
+  SchedulerCleanupTask:
+    Type: 'Custom::TaskConfig'
+    Properties:
+      ServiceToken: !GetAtt 
+        - SchedulerDefault
+        - Arn
+      Timeout: '120'
+      Name: TaskTableCleanup
+      Description: 'Internal task for cleaning task tracking table, do not delete'
+      Parameters:
+        TaskRetentionHours: !Ref TaskRetentionHours
+        RetainFailedTasks: !If 
+          - KeepFailedTasksCondition
+          - 'True'
+          - 'False'
+      Interval: 59 0/4 * * ?
+      Internal: 'True'
+      Action: SchedulerTaskCleanup
+      Enabled: !If 
+        - EnableTaskCleanupCondition
+        - 'True'
+        - 'False'
+      StackId: !Ref 'AWS::StackId'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c6913612-fd1d-4e36-b83d-6b16a8dd1d6a
+Outputs:
+  SchedulerRole:
+    Description: Arn for Scheduler Role
+    Value: !Sub '${SchedulerRole.Arn}'
+  OpsAutomatorScalingRole:
+    Description: Arn for OpsAutomatorScalingRole
+    Value: !Sub '${OpsAutomatorScalingRole.Arn}'
